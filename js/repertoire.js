@@ -9,10 +9,12 @@ async function loadSongs() {
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.error(error);
+    console.error("Erro Supabase:", error);
     songsList.innerHTML = "<p>Erro ao carregar músicas.</p>";
     return;
   }
+
+  console.log("Músicas encontradas:", data);
 
   if (!data || data.length === 0) {
     songsList.innerHTML = "<p>Nenhuma música cadastrada ainda.</p>";
