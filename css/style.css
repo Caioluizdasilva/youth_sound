@@ -5,7 +5,7 @@
 ================================ */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 120px;
 }
 
 *,
@@ -18,102 +18,89 @@ html {
     list-style: none;
 }
 
-/* ===============================
-   VARIÁVEIS
-================================ */
 :root {
-    /* Fundo */
     --bg-main: #0b0d17;
     --bg-secondary: #121528;
-    --bg-card: rgba(255, 255, 255, 0.08);
-
-    /* Cores */
+    --bg-card: rgba(255, 255, 255, 0.05);
     --accent: #dfff00;
-    --accent-soft: rgba(223, 255, 0, 0.15);
+    --accent-glow: rgba(223, 255, 0, 0.4);
+    --accent-soft: rgba(223, 255, 0, 0.1);
     --white: #ffffff;
     --white-soft: #f2f2f2;
     --text-muted: #b8b8c7;
-
-    /* Bordas & sombras */
-    --border-soft: rgba(255, 255, 255, 0.12);
-    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
-    --shadow-strong: 0 25px 60px rgba(0, 0, 0, 0.55);
-
-    /* Tipografia */
+    --border-soft: rgba(255, 255, 255, 0.1);
+    --shadow-modern: 0 20px 40px rgba(0, 0, 0, 0.4);
+    
     --font-heading: 'Oswald', sans-serif;
     --font-body: 'Poppins', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
-
-    /* Transições */
-    --transition-fast: 0.2s ease;
-    --transition-smooth: 0.3s ease;
-    --transition-slow: 0.8s ease;
+    
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===============================
-   BODY
+   BODY - Fundo Sem "Roda"
 ================================ */
 body {
     font-family: var(--font-body);
     color: var(--white);
-    background:
-        radial-gradient(circle at 20% 10%, #1b1f3a 0%, transparent 35%),
-        radial-gradient(circle at 80% 0%, #22285a 0%, transparent 30%),
-        linear-gradient(180deg, var(--bg-main), #05060c);
+    background: 
+        radial-gradient(circle at 50% -10%, #1b1f3a 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg-main) 0%, #05060c 100%);
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 100vh;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
 /* ===============================
-   HEADER
+   HEADER & LOGO (Aumentada e Moderna)
 ================================ */
 header {
-    width: min(1120px, 92%);
-    margin: 0.7rem auto;
+    width: min(1120px, 94%);
+    margin: 0 auto;
     position: fixed;
-    top: 0.5rem;
+    top: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
-
-    padding: 0.7rem 1.4rem;
-    border-radius: 999px;
-
-    background: rgba(10, 12, 26, 0.8);
-    backdrop-filter: blur(14px);
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    background: rgba(10, 12, 26, 0.7);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border-soft);
-}
-
-header h1 {
-    font-family: var(--font-heading);
-    color: var(--accent);
-    font-size: 1.3rem;
-    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-modern);
 }
 
 .logo img {
-    width: 56px;
-    filter: drop-shadow(0 6px 14px rgba(223,255,0,0.25));
+    width: 65px; /* Logo aumentada conforme pedido */
+    height: auto;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+    transition: transform 0.3s var(--transition-smooth);
+}
+
+.logo img:hover {
+    transform: rotate(5deg) scale(1.1);
 }
 
 nav {
     display: flex;
-    gap: 0.6rem;
+    gap: 1rem;
 }
 
 nav a {
     color: var(--white-soft);
     font-size: 0.9rem;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-    transition: var(--transition-smooth);
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    transition: all 0.3s var(--transition-smooth);
+    position: relative;
 }
 
 nav a:hover {
@@ -121,237 +108,165 @@ nav a:hover {
     background: var(--accent-soft);
 }
 
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 20px;
+}
+
 /* ===============================
-   HERO
+   HERO SECTION (Efeito Jovem)
 ================================ */
 .hero {
-    min-height: 100vh;
-    position: relative;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 90px;
-}
-
-.hero-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(3px);
-    transform: scale(1.05);
-}
-
-.hero .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
     text-align: center;
-    padding: 4rem 2rem;
-    animation: fadeInUp 1s ease;
+    padding: 120px 20px 60px;
 }
 
 .hero-content h1 {
     font-family: var(--font-heading);
-    color: var(--accent);
-    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    text-transform: uppercase;
+    line-height: 1;
     margin-bottom: 1.5rem;
-}
-
-.hero-content p {
-    color: var(--white-soft);
-    font-size: 1.1rem;
-    max-width: 680px;
-    margin: 0 auto;
+    background: linear-gradient(to bottom, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* ===============================
    MAIN & SECTIONS
 ================================ */
 main {
-    padding-top: 7rem;
+    padding-top: 2rem;
     width: min(1120px, 92%);
     margin: 0 auto;
 }
 
 section {
-    padding: 6rem 1.5rem;
-}
-
-.section-content {
-    background: var(--bg-secondary);
-    border-radius: 26px;
-    padding: 4rem 3rem;
+    margin-bottom: 4rem;
+    padding: 3rem 1.5rem;
+    background: var(--bg-card);
+    border-radius: 32px;
     border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
 }
 
-.section-title {
+section:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
     font-family: var(--font-heading);
     color: var(--accent);
-    text-align: center;
-    font-size: 2.4rem;
-    margin-bottom: 2.5rem;
-}
-
-section p {
-    text-align: center;
-    color: var(--white-soft);
-    max-width: 850px;
-    margin: 0 auto;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
 }
 
 /* ===============================
-   FORMULÁRIO
-================================ */
-form,
-#song-form {
-    max-width: 720px;
-    margin: 2rem auto;
-    background: var(--bg-card);
-    padding: 3rem;
-    border-radius: 22px;
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-soft);
-}
-
-form label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-bottom: 1.4rem;
-    font-weight: 600;
-}
-
-form input,
-form select,
-form textarea {
-    padding: 0.9rem 1.1rem;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid var(--border-soft);
-    border-radius: 10px;
-    color: var(--white);
-    font-family: var(--font-body);
-}
-
-form input:focus,
-form select:focus,
-form textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-button[type="submit"] {
-    width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg, var(--accent), #f3ff5f);
-    color: #000;
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(223,255,0,0.35);
-}
-
-button[type="submit"]:hover {
-    transform: translateY(-2px);
-}
-
-/* ===============================
-   LISTA DE MÚSICAS
+   CARDS & BOTÃO "VER CIFRA" (Estilizado)
 ================================ */
 #songs-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
 .song-card {
-    background: var(--bg-card);
-    border-radius: 20px;
-    padding: 1.6rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 28px;
+    padding: 2.5rem;
     border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-soft);
-    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s var(--transition-smooth);
 }
 
 .song-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-strong);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--accent-glow);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
 }
 
-.song-card h3 {
-    font-family: var(--font-heading);
-    color: var(--accent);
-    margin-bottom: 0.3rem;
+/* Quadrado Amarelo, Letra Branca (conforme pedido) */
+.song-card a, .view-chord-btn {
+    display: block;
+    width: 100%;
+    margin-top: 1.5rem;
+    background-color: var(--accent);
+    color: #FFFFFF !important; /* Letra Branca */
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 1rem;
+    border-radius: 12px; /* Aspecto mais quadrado, mas com leve arredondado moderno */
+    text-align: center;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    transition: all 0.3s ease;
 }
 
-/* ===============================
-   CIFRA / LETRA
-================================ */
-pre.lyrics {
-    margin-top: 1rem;
-    background: #0a0c1a;
-    color: var(--white-soft);
-    padding: 24px;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.08);
-    font-family: var(--font-mono);
-    font-size: 0.95rem;
-    line-height: 1.7;
-    white-space: pre-wrap;
+.song-card a:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+    box-shadow: 0 8px 20px var(--accent-glow);
 }
 
 /* ===============================
    FOOTER
 ================================ */
 footer {
-    margin-top: 5rem;
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
     text-align: center;
     color: var(--text-muted);
+    font-size: 0.9rem;
     border-top: 1px solid var(--border-soft);
 }
 
 /* ===============================
-   ANIMAÇÕES
-================================ */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ===============================
-   RESPONSIVO
+   RESPONSIVIDADE AJUSTADA
 ================================ */
 @media (max-width: 768px) {
-    .section-content {
-        padding: 2.5rem 1.5rem;
+    header {
+        top: 0;
+        width: 100%;
+        border-radius: 0 0 20px 20px;
+        flex-direction: column;
+        padding: 1.2rem;
     }
 
-    header {
-        flex-direction: column;
-        border-radius: 20px;
+    .logo img {
+        width: 50px;
     }
 
     nav {
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    main {
+        padding-top: 11rem;
     }
 }
