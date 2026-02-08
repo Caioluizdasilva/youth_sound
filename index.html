@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Som da Juventude | Início</title>
-
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
-    <h1>Som da Juventude</h1>
-
+    <div class="logo">
+      <img src="img/logo.png"Logo Juventude Santa" />
+    </div>
     <nav>
       <a href="index.html">Início</a>
       <a href="repertoire.html">Repertório</a>
@@ -21,34 +22,65 @@
   </header>
 
   <main>
-    <section>
-      <h2>Música que evangeliza</h2>
-      <p>
-        O Som da Juventude é um repositório musical criado para apoiar a
-        Juventude Santa com letras, cifras e repertórios para encontros,
-        missas e momentos de oração.
-      </p>
+
+    <!-- HERO SECTION: Foto grande com overlay -->
+    <section class="hero">
+      <div class="overlay"></div>
+      <img src="img/photo_juventude.jpg" alt="Juventude Santa" class="hero-bg" />
+      <div class="hero-content">
+        <h1>Música que evangeliza</h1>
+        <p>O Som da Juventude é um repositório musical criado para apoiar a Juventude Santa com letras, cifras e repertórios para encontros, missas e momentos de oração.</p>
+      </div>
     </section>
 
-    <section>
-  <h2>Músicas recentes</h2>
+    <!-- MISSÃO DA JUVENTUDE -->
+    <section class="mission">
+      <h2>Missão da Juventude</h2>
+      <p>Nossa missão é levar jovens a Cristo através da música, oração e evangelização em todas as capelas da Paróquia de Santana, em Nova Friburgo.</p>
+    </section>
 
-  <!-- Lista dinâmica de músicas -->
-  <div id="songs-list">
-    <!-- JS vai inserir os cards aqui -->
-  </div>
-</section>
+    <!-- PARÓQUIA -->
+    <section class="parish">
+      <h2>Paróquia de Santana</h2>
+      <p>A Paróquia de Santana, localizada no distrito de Campo do Coelho, em Nova Friburgo, é o centro de nossas atividades pastorais e onde a Juventude Santa realiza seus encontros e ministérios.</p>
+    </section>
 
+    <!-- SOBRE A JUVENTUDE SANTA -->
+    <section class="youth-group">
+      <h2>Juventude Santa</h2>
+      <p>Somos um grupo jovem itinerante que percorre todas as capelas da paróquia. Temos um ministério de música ativo, participando de missas, encontros e eventos comunitários.</p>
+    </section>
+
+    <!-- MÚSICAS RECENTES -->
+    <section class="recent-songs">
+      <h2>Músicas Recentes</h2>
+      <div id="songs-list">
+        <!-- JS vai inserir os cards aqui -->
+      </div>
+    </section>
+
+    <!-- INTEGRAÇÃO COM INSTAGRAM -->
+    <section class="instagram-feed">
+      <h2>Nosso Instagram</h2>
+      <p>Siga-nos no Instagram para conferir fotos, vídeos e momentos dos nossos encontros!</p>
+      <div class="instagram-embed">
+        <!-- Aqui você pode colocar widget do Instagram ou link para feed -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
   <footer>
     <p>© 2026 Som da Juventude • Juventude Santa</p>
   </footer>
 
+  <script type="module">
+    import { supabase } from "./js/supabase.js";
+    console.log("Supabase conectado:", supabase);
+  </script>
+  <script type="module" src="./js/songs.js"></script>
+
 </body>
-<script type="module">
-  import { supabase } from "./js/supabase.js";
-  console.log("Supabase conectado:", supabase);
-</script>
-
-<script type="module" src="./js/songs.js"></script>
-
 </html>
+
