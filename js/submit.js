@@ -6,12 +6,19 @@ const message = document.getElementById("message");
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const title = document.getElementById("title").value;
-  const artist = document.getElementById("artist").value;
-  const moment = document.getElementById("moment").value;
-  const key = document.getElementById("key").value;
-
   message.textContent = "Enviando música...";
+  message.style.color = "black";
+
+  const title = document.getElementById("title").value.trim();
+  const artist = document.getElementById("artist").value.trim();
+  const category = document.getElementById("category").value;
+  const song_key = document.getElementById("song_key").value.trim();
+
+  if (!title || !artist || !category) {
+    message.textContent = "Preencha todos os campos obrigatórios.";
+    message.style.color = "red";
+    return;
+  }
 
   const { error } = await supabase
     .from("songs")
@@ -19,8 +26,9 @@ form.addEventListener("submit", async (event) => {
       {
         title: title,
         artist: artist,
-        moment: moment,
-        key: key
+        category: category,
+        song_key: song_key,
+        approved: false
       }
     ]);
 
@@ -29,7 +37,7 @@ form.addEventListener("submit", async (event) => {
     message.textContent = "Erro ao enviar música.";
     message.style.color = "red";
   } else {
-    message.textContent = "Música cadastrada com sucesso!";
+    message.textContent = "Música enviada com sucesso! 🎶";
     message.style.color = "green";
     form.reset();
   }

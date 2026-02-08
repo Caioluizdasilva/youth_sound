@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Enviar Música | Som da Juventude</title>
+  <title>Som da Juventude | Enviar Música</title>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -14,8 +14,9 @@
 
     <nav>
       <a href="index.html">Início</a>
-      <a href="repertoire.html">Repertório</a>
-      <a href="submit.html">Enviar Música</a>
+      <a href="repertorio.html">Repertório</a>
+      <a href="enviar.html">Enviar Música</a>
+      <a href="sobre.html">Sobre</a>
     </nav>
   </header>
 
@@ -23,38 +24,62 @@
     <h2>Enviar nova música</h2>
 
     <form id="song-form">
+
       <label>
         Título da música
-        <input type="text" id="title" required />
+        <input
+          type="text"
+          id="title"
+          placeholder="Ex: Deus Está Aqui"
+          required
+        />
       </label>
 
       <label>
-        Artista / Banda
-        <input type="text" id="artist" required />
+        Artista / Ministério
+        <input
+          type="text"
+          id="artist"
+          placeholder="Ex: Ministério de Música"
+          required
+        />
       </label>
 
       <label>
-        Momento da Missa
-        <select id="moment" required>
+        Categoria da música
+        <select id="category" required>
           <option value="">Selecione</option>
           <option value="Entrada">Entrada</option>
           <option value="Ofertório">Ofertório</option>
           <option value="Comunhão">Comunhão</option>
           <option value="Final">Final</option>
+          <option value="Adoração">Adoração</option>
         </select>
       </label>
 
       <label>
-        Tom
-        <input type="text" id="key" placeholder="Ex: D, G, Am" />
+        Tom da música
+        <input
+          type="text"
+          id="song_key"
+          placeholder="Ex: D, G, Am"
+        />
       </label>
 
-      <button type="submit">Enviar Música</button>
-    </form>
+      <button type="submit">
+        Enviar música
+      </button>
 
-    <p id="message"></p>
+      <p id="message"></p>
+
+    </form>
   </main>
 
+  <footer>
+    <p>© 2026 Som da Juventude</p>
+  </footer>
+
   <script type="module" src="js/submit.js"></script>
+
 </body>
 </html>
