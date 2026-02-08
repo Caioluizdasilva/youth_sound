@@ -13,8 +13,9 @@ form.addEventListener("submit", async (event) => {
   const artist = document.getElementById("artist").value.trim();
   const category = document.getElementById("category").value;
   const song_key = document.getElementById("song_key").value.trim();
+  const chords = document.getElementById("chords").value.trim();
 
-  if (!title || !artist || !category) {
+  if (!title || !artist || !category || !chords) {
     message.textContent = "Preencha todos os campos obrigatórios.";
     message.style.color = "red";
     return;
@@ -24,10 +25,11 @@ form.addEventListener("submit", async (event) => {
     .from("songs")
     .insert([
       {
-        title: title,
-        artist: artist,
-        category: category,
-        song_key: song_key,
+        title,
+        artist,
+        category,
+        song_key,
+        chords,
         approved: false
       }
     ]);
