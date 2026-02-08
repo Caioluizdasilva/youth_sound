@@ -34,7 +34,37 @@ async function loadSong() {
     <pre class="lyrics">
 ${data.chords || "Cifra não cadastrada."}
     </pre>
+
+    <button id="delete-song" class="danger-btn">
+      Excluir música
+    </button>
   `;
+
+  document
+    .getElementById("delete-song")
+    .addEventListener("click", deleteSong);
+}
+
+async function deleteSong() {
+  const confirmDelete = confirm(
+    "⚠️ Tem certeza que deseja excluir esta música?\nEssa ação não pode ser desfeita."
+  );
+
+  if (!confirmDelete) return;
+
+  const { error } = await supabase
+    .from("songs")
+    .delete()
+    .eq("id", songId);
+
+  if (error) {
+    alert("Erro ao excluir música.");
+    console.error(error);
+    return;
+  }
+
+  alert("Música excluída com sucesso!");
+  window.location.href = "repertoire.html";
 }
 
 loadSong();
