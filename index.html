@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Som da Juventude | Início</title>
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -11,76 +12,92 @@
   <!-- HEADER -->
   <header>
     <div class="logo">
-      <img src="img/logo.png"Logo Juventude Santa" />
+      <img src="img/logo.png" alt="Logo Juventude Santa" />
     </div>
+
     <nav>
       <a href="index.html">Início</a>
       <a href="repertoire.html">Repertório</a>
       <a href="submit.html">Enviar Música</a>
-
     </nav>
   </header>
 
   <main>
 
-    <!-- HERO SECTION: Foto grande com overlay -->
+    <!-- HERO -->
     <section class="hero">
-      <div class="overlay"></div>
-      <img src="img/photo_juventude.jpg" alt="Juventude Santa" class="hero-bg" />
+      <img src="img/photo_juventude.jpg" alt="Juventude Santa" class="hero-bg">
+
+      <div class="hero-overlay"></div>
+
       <div class="hero-content">
         <h1>Música que evangeliza</h1>
-        <p>O Som da Juventude é um repositório musical criado para apoiar a Juventude Santa com letras, cifras e repertórios para encontros, missas e momentos de oração.</p>
+        <p>
+          O Som da Juventude é um repositório musical criado para apoiar
+          a Juventude Santa com letras, cifras e repertórios para encontros,
+          missas e momentos de oração.
+        </p>
       </div>
     </section>
 
-    <!-- MISSÃO DA JUVENTUDE -->
+    <!-- MISSÃO -->
     <section class="mission">
       <h2>Missão da Juventude</h2>
-      <p>Nossa missão é levar jovens a Cristo através da música, oração e evangelização em todas as capelas da Paróquia de Santana, em Nova Friburgo.</p>
+      <p>
+        Nossa missão é levar jovens a Cristo através da música,
+        da oração e da evangelização em todas as capelas da
+        Paróquia de Santana, em Nova Friburgo.
+      </p>
     </section>
 
     <!-- PARÓQUIA -->
     <section class="parish">
       <h2>Paróquia de Santana</h2>
-      <p>A Paróquia de Santana, localizada no distrito de Campo do Coelho, em Nova Friburgo, é o centro de nossas atividades pastorais e onde a Juventude Santa realiza seus encontros e ministérios.</p>
+      <p>
+        Localizada no distrito de Campo do Coelho, em Nova Friburgo,
+        é o centro das atividades pastorais onde a Juventude Santa
+        vive sua missão.
+      </p>
     </section>
 
-    <!-- SOBRE A JUVENTUDE SANTA -->
+    <!-- JUVENTUDE SANTA -->
     <section class="youth-group">
       <h2>Juventude Santa</h2>
-      <p>Somos um grupo jovem itinerante que percorre todas as capelas da paróquia. Temos um ministério de música ativo, participando de missas, encontros e eventos comunitários.</p>
+      <p>
+        Somos um grupo jovem itinerante, com ministério de música ativo,
+        presente em missas, encontros e eventos comunitários.
+      </p>
     </section>
 
     <!-- MÚSICAS RECENTES -->
     <section class="recent-songs">
       <h2>Músicas Recentes</h2>
+
       <div id="songs-list">
-        <!-- JS vai inserir os cards aqui -->
+        <!-- JS insere aqui -->
       </div>
     </section>
 
-    <!-- INTEGRAÇÃO COM INSTAGRAM -->
+    <!-- INSTAGRAM -->
     <section class="instagram-feed">
       <h2>Nosso Instagram</h2>
-      <p>Siga-nos no Instagram para conferir fotos, vídeos e momentos dos nossos encontros!</p>
-      <div class="instagram-embed">
-        <!-- Aqui você pode colocar widget do Instagram ou link para feed -->
-      </div>
+      <p>Siga a Juventude Santa e acompanhe nossos encontros.</p>
+
+      <a
+        href="https://instagram.com/"
+        target="_blank"
+        class="instagram-link"
+      >
+        @juventudesanta
+      </a>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2026 Som da Juventude • Juventude Santa</p>
   </footer>
 
-  <script type="module">
-    import { supabase } from "./js/supabase.js";
-    console.log("Supabase conectado:", supabase);
-  </script>
-  <script type="module" src="./js/songs.js"></script>
-
+  <script type="module" src="js/songs.js"></script>
 </body>
 </html>
-

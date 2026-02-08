@@ -4,49 +4,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600;700&family=JetBrains+Mono&display=swap');
 
 /* ===============================
-   VARIÁVEIS GLOBAIS
+   VARIÁVEIS
 ================================ */
 :root {
-  /* cores */
   --bg-main: #0b0d17;
   --bg-secondary: #121528;
   --bg-card: rgba(255,255,255,0.06);
+
   --accent: #dfff00;
   --accent-soft: rgba(223,255,0,0.14);
+
   --white: #ffffff;
   --white-soft: #f2f2f2;
   --text-muted: #b8b8c7;
-  --border-soft: rgba(255,255,255,0.10);
+
+  --border-soft: rgba(255,255,255,0.1);
   --shadow-soft: 0 10px 30px rgba(0,0,0,0.35);
 
-  /* tipografia */
   --font-heading: 'Oswald', sans-serif;
-  --font-body: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --font-body: 'Poppins', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* espaçamentos & tamanhos */
   --max-width: 1120px;
-  --layout-gap: 1.25rem;
-  --card-radius: 1.5rem;
-  --pill-radius: 999px;
-
-  /* transições */
-  --transition-smooth: 0.22s cubic-bezier(.2,.9,.2,1);
-
-  /* breakpoints */
-  --bp-sm: 480px;
-  --bp-md: 768px;
-  --bp-lg: 1120px;
-}
-
-/* Preferências de movimento reduzido */
-@media (prefers-reduced-motion: reduce) {
-  :root { --transition-smooth: 0s; }
-  * { scroll-behavior: auto; }
+  --radius: 1.5rem;
+  --transition: 0.25s ease;
 }
 
 /* ===============================
-   RESET BÁSICO (Correção do "Cubo")
+   RESET
 ================================ */
 *,
 *::before,
@@ -54,218 +39,222 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 120px;
-  font-size: 16px;
-  color-scheme: dark;
 }
 
-/* Body sem bordas externas para remover o efeito de cubo */
 body {
   font-family: var(--font-body);
-  color: var(--white);
-  background: 
+  background:
     radial-gradient(circle at 50% 0%, #1b1f3a 0%, transparent 50%),
     linear-gradient(180deg, var(--bg-main) 0%, #05060c 100%);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  color: var(--white);
   min-height: 100vh;
-  line-height: 1.6;
-  overflow-x: hidden;
-  border: none; /* Garante que não haja borda */
 }
 
 /* ===============================
-   HEADER & NAV
+   HEADER
 ================================ */
 header {
-  width: min(var(--max-width), 92%);
-  margin: 0 auto;
   position: fixed;
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
+  width: min(var(--max-width), 92%);
+  background: rgba(10,12,26,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
   display: flex;
-  gap: var(--layout-gap);
   justify-content: space-between;
   align-items: center;
-  padding: 0.6rem 1.25rem;
-  border-radius: 50px;
-  background: rgba(10,12,26,0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--border-soft);
-  transition: box-shadow var(--transition-smooth), transform var(--transition-smooth);
+  z-index: 1000;
 }
 
-.logo img { 
-  width: 55px; /* Logo levemente aumentada para destaque */
-  display: block; 
-  height: auto; 
-}
-
-nav {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+.logo img {
+  width: 55px;
 }
 
 nav a {
   color: var(--white-soft);
+  text-decoration: none;
   font-size: 0.85rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 20px;
-  transition: background var(--transition-smooth), color var(--transition-smooth);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  transition: var(--transition);
 }
 
 nav a:hover {
-  color: var(--accent);
   background: var(--accent-soft);
+  color: var(--accent);
 }
 
 /* ===============================
-   MAIN / CONTENT
+   MAIN
 ================================ */
 main {
-  padding-top: 8.5rem;
+  padding-top: 9rem;
   width: min(var(--max-width), 92%);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
-section {
+/* ===============================
+   HERO
+================================ */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  padding: 4rem 1rem;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px) brightness(0.6);
+  transform: scale(1.05);
+}
+
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  padding: 2rem;
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  color: var(--accent);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  color: var(--white-soft);
+}
+
+/* ===============================
+   SECTIONS
+================================ */
+section {
+  padding: 4rem 0;
   text-align: center;
 }
 
-h1, h2 {
+section h2 {
   font-family: var(--font-heading);
   color: var(--accent);
-  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 /* ===============================
-   FILTERS (Centralização e Estilo)
+   SONG LIST – HOME (GRID)
 ================================ */
-.filters {
-  margin: 2rem 0 3rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.filters-row {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.filters select,
-.filters button {
-  padding: 0.6rem 1.2rem;
-  border-radius: var(--pill-radius);
-  border: 1px solid var(--border-soft);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--white);
-  font-family: var(--font-body);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.filters select:hover, .filters button:hover {
-  border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-/* ===============================
-   SONG CARDS
-================================ */
-#songs-list {
+.home #songs-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
-  width: 100%;
 }
 
-.song-card {
-  background: var(--bg-card);
-  border-radius: var(--card-radius);
-  padding: 1.8rem;
-  border: 1px solid var(--border-soft);
-  text-align: left;
+/* ===============================
+   SONG LIST – REPERTÓRIO (LISTA)
+================================ */
+.repertoire #songs-list {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+  gap: 1rem;
+}
+
+/* ===============================
+   SONG CARD
+================================ */
+.song-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: left;
+  transition: var(--transition);
 }
 
 .song-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-soft);
   background: rgba(255,255,255,0.08);
+  transform: translateY(-4px);
 }
 
-/* Botão "Ver Cifra" (Amarelo com Texto Branco) */
-.view-chord-btn {
+.song-card h3 {
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+
+/* botão */
+.song-card a {
+  display: block;
   margin-top: 1rem;
-  padding: 0.7rem 1rem;
-  border-radius: 10px;
-  font-weight: 700;
-  display: inline-block;
-  width: 100%;
+  padding: 0.7rem;
   text-align: center;
-  background-color: var(--accent);
-  color: #FFFFFF !important; /* Texto Branco como pedido */
+  border-radius: 10px;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(223, 255, 0, 0.2);
-  transition: all 0.3s ease;
 }
 
-.view-chord-btn:hover {
-  filter: brightness(1.1);
-  transform: scale(1.02);
+/* ===============================
+   CIFRA
+================================ */
+.music pre.lyrics {
+  background: #0e1024;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  color: #f8f8f2;
+}
+
+/* ===============================
+   BOTÃO PERIGO
+================================ */
+.danger-btn {
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  cursor: pointer;
 }
 
 /* ===============================
    FOOTER
 ================================ */
 footer {
-  width: 100%;
-  padding: 3rem 1rem;
+  margin-top: 5rem;
+  padding: 2rem;
   text-align: center;
   color: var(--text-muted);
   border-top: 1px solid var(--border-soft);
-  margin-top: 4rem;
-}
-
-/* ===============================
-   RESPONSIVIDADE
-================================ */
-@media (max-width: 768px) {
-  header {
-    top: 0;
-    width: 100%;
-    border-radius: 0;
-    flex-direction: column;
-    padding: 1rem;
-    left: 0;
-    transform: translateX(0);
-  }
-
-  main { padding-top: 12rem; }
-
-  .filters-row { flex-direction: column; width: 100%; }
-  .filters select, .filters button { width: 100%; }
 }
