@@ -1,101 +1,263 @@
-/* reset básico */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --blue-dark: #0d0b1f;
+  --yellow-lime: #dfff00;
+  --light: #eaeaea;
+  --lavender: #a9a4c2;
+  --overlay-dark: rgba(22, 21, 41, 0.5);
+  --overlay-light: rgba(255, 255, 255, 0.1);
+  --text: #0d0b1f;
+  --text-soft: #3e3958;
+  --border: #c7c4d7;
+  --shadow: 0 16px 40px rgba(13, 11, 31, 0.16);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* base */
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text);
+  line-height: 1.65;
+  background:
+    radial-gradient(circle at 5% 0%, rgba(223, 255, 0, 0.2), transparent 42%),
+    radial-gradient(circle at 100% 12%, rgba(169, 164, 194, 0.35), transparent 40%),
+    var(--light);
 }
 
-/* layout */
 header {
-  background: #1f2933;
-  color: #fff;
-  padding: 1rem;
+  width: min(1040px, calc(100% - 2rem));
+  margin: 1.2rem auto 0;
+  padding: 1.25rem 1.4rem;
+  border-radius: 20px;
+  border: 1px solid var(--overlay-light);
+  background: linear-gradient(140deg, var(--blue-dark), #1d1a34 55%, #2a2551);
+  box-shadow: var(--shadow);
+  color: var(--light);
 }
 
 header h1 {
-  margin-bottom: 0.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.65rem, 2.8vw, 2.3rem);
+  letter-spacing: 0.8px;
+  color: var(--yellow-lime);
+}
+
+nav {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
 }
 
 nav a {
-  color: #fff;
-  margin-right: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--light);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.42rem 0.82rem;
+  border-radius: 999px;
+  border: 1px solid var(--overlay-light);
+  background: transparent;
+  transition: all 0.2s ease;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  transform: translateY(-1px);
+  background: var(--overlay-light);
+  border-color: var(--yellow-lime);
+  color: var(--yellow-lime);
 }
 
 main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  width: min(1040px, calc(100% - 2rem));
+  margin: 1.5rem auto 0;
 }
 
-section {
-  margin-bottom: 2rem;
+main > h2 {
+  margin-bottom: 0.9rem;
 }
 
-/* listas de músicas */
-.song-card {
-  background: #fff;
-  padding: 1rem;
+section,
+article,
+form,
+#songs-list {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 22px var(--overlay-dark);
+  padding: 1.2rem;
+}
+
+section + section,
+main > section,
+main > article,
+form {
   margin-bottom: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+h2,
+h3 {
+  font-family: 'Oswald', sans-serif;
+  color: var(--blue-dark);
+  letter-spacing: 0.4px;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 2.1vw, 1.8rem);
+  margin-bottom: 0.45rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+p {
+  color: var(--text-soft);
+}
+
+.song-card {
+  background: linear-gradient(165deg, #ffffff 0%, #f6f5fa 100%);
+  border: 1px solid var(--border);
+  border-left: 6px solid var(--yellow-lime);
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.song-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px var(--overlay-dark);
 }
 
 .song-card h3 {
-  margin-bottom: 0.3rem;
+  color: var(--blue-dark);
+  margin-bottom: 0.25rem;
 }
 
-/* formulário */
+#song-details p {
+  margin-bottom: 0.35rem;
+}
+
+#song-details section {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  background: #f7f7fb;
+  box-shadow: none;
+}
+
+pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.93rem;
+  line-height: 1.58;
+  border-radius: 12px;
+  background: var(--blue-dark);
+  color: var(--light);
+  padding: 1rem;
+  overflow-x: auto;
+}
+
 form {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 6px;
+  display: grid;
+  gap: 1rem;
 }
 
 form label {
-  display: block;
-  margin-bottom: 1rem;
+  color: var(--blue-dark);
+  font-weight: 600;
 }
 
 form input,
+form select,
 form textarea {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.3rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin-top: 0.45rem;
+  padding: 0.68rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--yellow-lime);
+  box-shadow: 0 0 0 3px rgba(223, 255, 0, 0.35);
 }
 
 button {
-  background: #2563eb;
-  color: #fff;
+  width: fit-content;
   border: none;
-  padding: 0.7rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 10px;
+  padding: 0.72rem 1.1rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  color: var(--blue-dark);
+  background: linear-gradient(120deg, var(--yellow-lime), #c9e600);
+  box-shadow: 0 10px 18px rgba(223, 255, 0, 0.35);
   cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 button:hover {
-  background: #1d4ed8;
+  transform: translateY(-1px);
+  filter: brightness(0.98);
 }
 
-/* footer */
+#message {
+  min-height: 1.2rem;
+  font-weight: 600;
+  color: #2f3a05;
+}
+
 footer {
+  width: min(1040px, calc(100% - 2rem));
+  margin: auto auto 1.5rem;
+  padding: 0.95rem;
   text-align: center;
-  padding: 1rem;
-  background: #e5e7eb;
-  margin-top: 3rem;
+  font-size: 0.92rem;
+  color: #5a5574;
+}
+
+@media (max-width: 640px) {
+  header,
+  main,
+  footer {
+    width: calc(100% - 1rem);
+  }
+
+  header {
+    margin-top: 0.8rem;
+    border-radius: 16px;
+  }
+
+  nav a {
+    font-size: 0.88rem;
+    padding: 0.38rem 0.62rem;
+  }
+
+  section,
+  article,
+  form,
+  #songs-list {
+    border-radius: 14px;
+    padding: 1rem;
+  }
 }
