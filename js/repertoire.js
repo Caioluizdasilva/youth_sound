@@ -1,23 +1,37 @@
 import { supabase } from "./supabase.js";
 
 const songsList = document.getElementById("songs-list");
+const filterCategory = document.getElementById("filter-category");
+const filterKey = document.getElementById("filter-key");
+const applyBtn = document.getElementById("apply-filters");
+const clearBtn = document.getElementById("clear-filters");
 
-async function loadSongs() {
-  const { data, error } = await supabase
+async function loadSongs(filters = {}) {
+  songsList.innerHTML = "<p>Carregando músicas...</p>";
+
+  let query = supabase
     .from("songs")
     .select("id, title, artist, category, song_key")
     .order("created_at", { ascending: false });
 
+  if (filters.category) {
+    query = query.eq("category", filters.category);
+  }
+
+  if (filters.song_key) {
+    query = query.eq("song_key", filters.song_key);
+  }
+
+  const { data, error } = await query;
+
   if (error) {
-    console.error("Erro Supabase:", error);
+    console.error(error);
     songsList.innerHTML = "<p>Erro ao carregar músicas.</p>";
     return;
   }
 
-  console.log("Músicas encontradas:", data);
-
   if (!data || data.length === 0) {
-    songsList.innerHTML = "<p>Nenhuma música cadastrada ainda.</p>";
+    songsList.innerHTML = "<p>Nenhuma música encontrada.</p>";
     return;
   }
 
@@ -39,4 +53,20 @@ async function loadSongs() {
   });
 }
 
+// aplicar filtros
+applyBtn.addEventListener("click", () => {
+  loadSongs({
+    category: filterCategory.value,
+    song_key: filterKey.value
+  });
+});
+
+// limpar filtros
+clearBtn.addEventListener("click", () => {
+  filterCategory.value = "";
+  filterKey.value = "";
+  loadSongs();
+});
+
+// carregamento inicial
 loadSongs();
