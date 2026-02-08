@@ -760,6 +760,18 @@ form {
     }
 }
 
+pre.lyrics {
+  background: #0f1025;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  font-family: monospace;
+  line-height: 1.5;
+}
+
+
 /* Acessibilidade */
 @media (prefers-reduced-motion: reduce) {
     * {

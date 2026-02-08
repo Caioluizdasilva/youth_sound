@@ -2,18 +2,19 @@ import { supabase } from "./supabase.js";
 
 const container = document.getElementById("music-container");
 
+// pega o ID da URL
 const params = new URLSearchParams(window.location.search);
 const songId = params.get("id");
 
-async function loadMusic() {
-  if (!songId) {
-    container.innerHTML = "<p>Música não encontrada.</p>";
-    return;
-  }
+if (!songId) {
+  container.innerHTML = "<p>Música não encontrada.</p>";
+  throw new Error("ID da música não informado");
+}
 
+async function loadSong() {
   const { data, error } = await supabase
     .from("songs")
-    .select("*")
+    .select("title, artist, category, song_key, lyrics")
     .eq("id", songId)
     .single();
 
@@ -24,14 +25,14 @@ async function loadMusic() {
   }
 
   container.innerHTML = `
-    <h1>${data.title}</h1>
-    <p><strong>Artist:</strong> ${data.artist}</p>
-    <p><strong>Category:</strong> ${data.category}</p>
-    <p><strong>Key:</strong> ${data.key}</p>
+    <h2>${data.title}</h2>
+    <p><strong>Artista:</strong> ${data.artist}</p>
+    <p><strong>Categoria:</strong> ${data.category}</p>
+    <p><strong>Tom:</strong> ${data.song_key || "-"}</p>
 
-    <h3>Chords</h3>
-    <pre>${data.chords}</pre>
+    <h3>Cifra</h3>
+    <pre class="lyrics">${data.lyrics || "Cifra não cadastrada."}</pre>
   `;
 }
 
-loadMusic();
+loadSong();
