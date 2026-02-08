@@ -2,11 +2,12 @@
 
 :root {
   --blue-dark: #0d0b1f;
+  --blue-mid: #171332;
   --yellow-lime: #dfff00;
   --text-light: #ffffff;
   --text-soft: #dcdcdc;
   --overlay-dark: rgba(0,0,0,0.6);
-  --card-glow: 0 12px 35px rgba(0,0,0,0.15);
+  --surface-soft: rgba(255,255,255,0.04);
 }
 
 * {
@@ -18,69 +19,101 @@
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--text-light);
-  background-color: #0d0b1f;
+  background:
+    radial-gradient(circle at 10% 10%, #1f1a43 0%, transparent 35%),
+    radial-gradient(circle at 85% 0%, #2a205a 0%, transparent 28%),
+    linear-gradient(160deg, #0d0b1f 0%, #140f2f 100%);
   overflow-x: hidden;
+  min-height: 100vh;
+}
+
+main {
+  width: min(1120px, 92%);
+  margin: 0 auto;
+  padding-top: 6.8rem;
 }
 
 /* Header */
 header {
   width: 100%;
-  max-width: 1200px;
-  margin: 1rem auto;
+  max-width: 1120px;
+  margin: 0.7rem auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  gap: 1rem;
+  padding: 0.65rem 1.2rem;
   position: fixed;
-  top: 0;
+  top: 0.35rem;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(13,11,31,0.85);
-  backdrop-filter: blur(10px);
-  border-radius: 18px;
+  background: rgba(13,11,31,0.72);
+  backdrop-filter: blur(14px);
+  border-radius: 999px;
   z-index: 1000;
-  box-shadow: var(--card-glow);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 header h1 {
   font-family: 'Oswald', sans-serif;
   color: var(--yellow-lime);
-  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: clamp(46px, 5vw, 62px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem;
 }
 
 nav a {
   color: var(--text-light);
-  font-weight: 600;
-  padding: 0.4rem 0.9rem;
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 0.35rem 0.7rem;
   border-radius: 50px;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 nav a:hover {
-  background-color: var(--yellow-lime);
-  color: var(--blue-dark);
-  transform: translateY(-2px);
+  color: var(--yellow-lime);
+  background-color: rgba(223,255,0,0.1);
 }
 
 /* Hero Section */
 .hero {
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 78vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
+  padding: 7.5rem 1.2rem 3rem;
+  margin-bottom: 2rem;
   text-align: center;
   overflow: hidden;
+  border-radius: 28px;
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('../img/juventude-foto.jpg') center/cover no-repeat;
+  background: url('../img/photo_juventude.jpg') center/cover no-repeat;
   z-index: 1;
   filter: brightness(0.5);
 }
@@ -98,6 +131,7 @@ nav a:hover {
   max-width: 900px;
 }
 
+.hero-content h1,
 .hero-content h2 {
   font-family: 'Oswald', sans-serif;
   color: var(--yellow-lime);
@@ -111,25 +145,13 @@ nav a:hover {
   line-height: 1.6;
 }
 
-/* Logo pequena */
-.hero-logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 80px;
-  height: auto;
-  z-index: 4;
-}
-
 /* Seções */
 section {
-  padding: 4rem 2rem;
-  margin: 2rem 0;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(6px);
-  box-shadow: var(--card-glow);
-  transition: transform 0.3s ease;
+  padding: 2.5rem 0;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  border: none;
 }
 
 section h2 {
@@ -145,7 +167,7 @@ section p {
   color: var(--text-soft);
   font-size: 1.05rem;
   max-width: 850px;
-  margin: 0 auto 1rem auto;
+  margin: 0 auto;
 }
 
 /* Cards de músicas recentes */
@@ -157,10 +179,10 @@ section p {
 }
 
 .song-card {
-  background: rgba(255,255,255,0.08);
-  border-radius: 22px;
+  background: linear-gradient(150deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border-radius: 18px;
   padding: 1.5rem;
-  border-left: 5px solid var(--yellow-lime);
+  border: 1px solid rgba(255,255,255,0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -180,7 +202,7 @@ footer {
   text-align: center;
   padding: 2rem 1rem;
   font-size: 0.92rem;
-  color: var(--text-soft);
+  color: rgba(220,220,220,0.84);
 }
 
 /* Fade-in Animation */
@@ -197,30 +219,41 @@ footer {
 
 /* Responsividade */
 @media(max-width: 900px) {
-  .hero-content h2 {
+  main {
+    width: min(1120px, 94%);
+    padding-top: 7rem;
+  }
+
+  header {
+    border-radius: 18px;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 0.7rem 0.9rem;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .hero-content h1,
+.hero-content h2 {
     font-size: clamp(2rem, 5vw, 3rem);
   }
 
   .hero-content p {
     font-size: 1rem;
   }
-
-  nav {
-    gap: 0.4rem;
-  }
-
-  header {
-    padding: 0.8rem 1rem;
-  }
 }
 
 @media(max-width: 500px) {
-  .hero-content h2 {
+  .hero-content h1,
+.hero-content h2 {
     font-size: 2rem;
   }
 
-  .hero-logo {
-    width: 60px;
+  .logo img {
+    width: 44px;
   }
 
   #songs-list {
