@@ -7,7 +7,8 @@
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+
+<body class="repertoire">
 
   <!-- HEADER -->
   <header>
@@ -24,20 +25,36 @@
 
   <main>
 
+    <!-- TÍTULO DA PÁGINA -->
     <section class="page-title">
       <h1>Repertório de Músicas</h1>
-      <p>Encontre músicas por categoria ou tom.</p>
+      <p>Busque músicas por nome, artista, ministério, categoria ou tom.</p>
     </section>
 
     <!-- FILTROS -->
     <section class="filters">
       <div class="filters-row">
+
+        <input
+          type="text"
+          id="filter-title"
+          placeholder="Buscar por título"
+        />
+
+        <input
+          type="text"
+          id="filter-artist"
+          placeholder="Buscar por artista / ministério"
+        />
+
         <select id="filter-category">
           <option value="">Todas as categorias</option>
           <option value="Missa">Missa</option>
           <option value="Adoração">Adoração</option>
+          <option value="Encontro">Encontro</option>
           <option value="Encontro Mariano">Encontro Mariano</option>
           <option value="Louvor">Louvor</option>
+          <option value="Final">Final</option>
         </select>
 
         <select id="filter-key">
@@ -54,22 +71,24 @@
 
         <button id="apply-filters">Filtrar</button>
         <button id="clear-filters">Limpar</button>
+
       </div>
     </section>
 
-    <!-- LISTA NORMAL (SEM GRID) -->
+    <!-- LISTA DE MÚSICAS (LISTA NORMAL, SEM GRID) -->
     <section class="repertoire-list">
-      <ul id="songs-list">
-        <li>Carregando músicas...</li>
-      </ul>
+      <div id="songs-list">
+        <p>Carregando músicas...</p>
+      </div>
     </section>
 
   </main>
 
   <footer>
-    <p>© 2026 Som da Juventude</p>
+    <p>© 2026 Som da Juventude • Juventude Santa</p>
   </footer>
 
   <script type="module" src="js/repertoire.js"></script>
+
 </body>
 </html>
