@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Som da Juventude | Enviar Música</title>
+  <title>Enviar Música | Som da Juventude</title>
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -16,51 +16,45 @@
       <a href="index.html">Início</a>
       <a href="repertoire.html">Repertório</a>
       <a href="submit.html">Enviar Música</a>
-      <a href="about.html">Sobre</a>
     </nav>
   </header>
 
   <main>
-    <h2>Enviar Música</h2>
+    <h2>Enviar nova música</h2>
 
     <form id="song-form">
-  <label>
-    Título da música
-    <input type="text" id="title" required />
-  </label>
+      <label>
+        Título da música
+        <input type="text" id="title" required />
+      </label>
 
-  <label>
-    Artista
-    <input type="text" id="artist" />
-  </label>
+      <label>
+        Artista / Banda
+        <input type="text" id="artist" required />
+      </label>
 
-  <label>
-    Tom
-    <input type="text" id="key" />
-  </label>
+      <label>
+        Momento da Missa
+        <select id="moment" required>
+          <option value="">Selecione</option>
+          <option value="Entrada">Entrada</option>
+          <option value="Ofertório">Ofertório</option>
+          <option value="Comunhão">Comunhão</option>
+          <option value="Final">Final</option>
+        </select>
+      </label>
 
-  <label>
-    Categoria
-    <input type="text" id="category" />
-  </label>
+      <label>
+        Tom
+        <input type="text" id="key" placeholder="Ex: D, G, Am" />
+      </label>
 
-  <label>
-    Letra
-    <textarea id="lyrics" rows="6"></textarea>
-  </label>
+      <button type="submit">Enviar Música</button>
+    </form>
 
-  <label>
-    Cifra
-    <textarea id="chords" rows="6"></textarea>
-  </label>
-
-  <button type="submit">Enviar</button>
-</form>
+    <p id="message"></p>
   </main>
 
-  <footer>
-    <p>© 2026 Som da Juventude</p>
-  </footer>
-
+  <script type="module" src="js/submit.js"></script>
 </body>
 </html>
