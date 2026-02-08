@@ -14,7 +14,7 @@ if (!songId) {
 async function loadSong() {
   const { data, error } = await supabase
     .from("songs")
-    .select("title, artist, category, song_key, lyrics")
+    .select("title, artist, category, song_key, chords")
     .eq("id", songId)
     .single();
 
@@ -31,7 +31,9 @@ async function loadSong() {
     <p><strong>Tom:</strong> ${data.song_key || "-"}</p>
 
     <h3>Cifra</h3>
-    <pre class="lyrics">${data.lyrics || "Cifra não cadastrada."}</pre>
+    <pre class="lyrics">
+${data.chords || "Cifra não cadastrada."}
+    </pre>
   `;
 }
 
