@@ -41,11 +41,6 @@
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 120px;
-}
-
 body {
   font-family: var(--font-body);
   background:
@@ -107,13 +102,12 @@ main {
 ================================ */
 .hero {
   position: relative;
-  min-height: 90vh;
+  min-height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  overflow: hidden;
   border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .hero-bg {
@@ -122,11 +116,11 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(4px) brightness(0.6);
-  transform: scale(1.05);
+  filter: blur(6px) brightness(0.6);
+  transform: scale(1.08);
 }
 
-.hero .overlay {
+.hero-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
@@ -135,20 +129,19 @@ main {
 .hero-content {
   position: relative;
   z-index: 2;
+  text-align: center;
   max-width: 720px;
-  padding: 2rem;
 }
 
 .hero-content h1 {
   font-family: var(--font-heading);
   color: var(--accent);
   font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 1rem;
 }
 
 .hero-content p {
+  margin-top: 1rem;
   font-size: 1.1rem;
-  color: var(--white-soft);
 }
 
 /* ===============================
@@ -162,20 +155,30 @@ section {
 section h2 {
   font-family: var(--font-heading);
   color: var(--accent);
-  margin-bottom: 1rem;
 }
 
 /* ===============================
-   SONG LIST – HOME (GRID)
+   FILTROS
 ================================ */
-.home #songs-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+.filters-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters-row input,
+.filters-row select,
+.filters-row button {
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
 }
 
 /* ===============================
-   SONG LIST – REPERTÓRIO (LISTA)
+   SONG LIST
 ================================ */
 .repertoire #songs-list {
   display: flex;
@@ -192,58 +195,83 @@ section h2 {
   border-radius: var(--radius);
   padding: 1.5rem;
   text-align: left;
-  transition: var(--transition);
-}
-
-.song-card:hover {
-  background: rgba(255,255,255,0.08);
-  transform: translateY(-4px);
 }
 
 .song-card h3 {
   color: var(--accent);
-  margin-bottom: 0.3rem;
 }
 
-/* botão */
 .song-card a {
   display: block;
   margin-top: 1rem;
-  padding: 0.7rem;
-  text-align: center;
-  border-radius: 10px;
   background: var(--accent);
   color: #000;
-  font-weight: 700;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 10px;
   text-decoration: none;
+  font-weight: 700;
 }
 
 /* ===============================
-   CIFRA
+   CIFRA (MELHORADA)
 ================================ */
 .music pre.lyrics {
   background: #0e1024;
   border: 1px solid var(--border-soft);
-  border-radius: 14px;
-  padding: 2rem;
-  margin-top: 1.5rem;
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 2rem;
   font-family: var(--font-mono);
-  font-size: 0.95rem;
-  line-height: 1.7;
+  font-size: 1.15rem;
+  line-height: 1.9;
   white-space: pre-wrap;
-  overflow-x: auto;
   color: #f8f8f2;
 }
 
 /* ===============================
-   BOTÃO PERIGO
+   FORMULÁRIO
 ================================ */
-.danger-btn {
-  margin-top: 2rem;
-  padding: 0.8rem 1.5rem;
+form {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 0.7rem;
   border-radius: 10px;
-  background: #dc2626;
-  color: #fff;
+  border: 1px solid var(--border-soft);
+  background: rgba(255,255,255,0.05);
+  color: var(--white);
+}
+
+form textarea {
+  font-family: var(--font-mono);
+  min-height: 220px;
+}
+
+form button {
+  background: var(--accent);
+  color: #000;
+  padding: 0.8rem;
+  border-radius: 12px;
+  font-weight: 700;
   border: none;
   cursor: pointer;
 }
@@ -252,7 +280,7 @@ section h2 {
    FOOTER
 ================================ */
 footer {
-  margin-top: 5rem;
+  margin-top: 4rem;
   padding: 2rem;
   text-align: center;
   color: var(--text-muted);
